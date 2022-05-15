@@ -17,14 +17,26 @@ let weather = {
     .then((data) => {
       this.displayWeather(data)
     })
+    document.querySelector("search-bar")
+    .addEventListener("keyup", function(event) {
+      if (event.key === 13) {
+        weather.displayWeather;
+      }
+    });
   },
   displayWeather: function(data) {
     let city = data.name;
     let temp = data.main.temp;
     let humidity = data.main.humidity;
-    console.log(data)
+    let icon = data.weather[0].icon;
+    let description = data.weather[0].description;
+    let windy = data.wind.speed;
     document.getElementById("tempe").innerHTML = `Temp: ${temp}°C`
     document.getElementById("humidity").innerHTML = `Humidity: ${humidity}%`
     document.getElementById("location").innerHTML = `Weather in: ${city}`
+    document.querySelector(".icon").src=`https://openweathermap.org/img/wn/${icon}@2x.png`
+    document.querySelector(".description").innerText = description
+    document.querySelector(".windy").innerText = `Wind Speeds: ${windy} km/h` 
+    document.body.style.backgroundImage = `url(https://source.unsplash.com/1600x900/?${city})`
     
 }};
