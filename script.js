@@ -17,12 +17,6 @@ let weather = {
     .then((data) => {
       this.displayWeather(data)
     })
-    document.querySelector("search-bar")
-    .addEventListener("keyup", function(event) {
-      if (event.key === 13) {
-        weather.displayWeather;
-      }
-    });
   },
   displayWeather: function(data) {
     let city = data.name;
@@ -40,3 +34,8 @@ let weather = {
     document.body.style.backgroundImage = `url(https://source.unsplash.com/1600x900/?${city})`
     
 }};
+    document.querySelector(".search-bar").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        weather.fetchCords(document.querySelector('.search-bar').value);
+      }
+    });
